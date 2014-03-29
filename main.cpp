@@ -14,6 +14,7 @@
 
 #include "GameObject.hpp"
 #include "GameWorld.hpp"
+#include "ResourceManager.hpp"
 
 const unsigned int WIDTH=800,HEIGHT=600;
 
@@ -27,6 +28,8 @@ int main(int argc, char** argv) {
     window.setVerticalSyncEnabled(true);
     
     GameWorld world(window);
+    ResourceManager resourceManager;
+    resourceManager.loadWorld(world, "level1.lvl");
     
     sf::Clock timer;
     while (window.isOpen())
@@ -42,7 +45,7 @@ int main(int argc, char** argv) {
         }
         
         world.update(dt);
-        
+
         window.clear(sf::Color::Black);
         world.renderFrame();
         window.display();

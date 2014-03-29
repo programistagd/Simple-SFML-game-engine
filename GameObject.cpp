@@ -13,3 +13,6 @@ GameObject::GameObject() {
 GameObject::~GameObject() {
 }
 
+GameObject* GameObject::create(ResourceManager& rm, std::stringstream& in){
+    return nullptr;
+}

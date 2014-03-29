@@ -38,6 +38,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/GameObject.o \
 	${OBJECTDIR}/GameWorld.o \
 	${OBJECTDIR}/Observer.o \
+	${OBJECTDIR}/ResourceManager.o \
+	${OBJECTDIR}/StaticObject.o \
 	${OBJECTDIR}/main.o
 
 
@@ -79,6 +81,16 @@ ${OBJECTDIR}/Observer.o: Observer.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Observer.o Observer.cpp
+
+${OBJECTDIR}/ResourceManager.o: ResourceManager.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/ResourceManager.o ResourceManager.cpp
+
+${OBJECTDIR}/StaticObject.o: StaticObject.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/StaticObject.o StaticObject.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
