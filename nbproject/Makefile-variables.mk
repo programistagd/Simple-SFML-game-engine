@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-Linux-x86
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux-x86
-CND_ARTIFACT_NAME_Debug=quadtreevoxels
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux-x86/quadtreevoxels
+CND_ARTIFACT_NAME_Debug=ppgame
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux-x86/ppgame
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Debug=quadtreevoxels.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/quadtreevoxels.tar
+CND_PACKAGE_NAME_Debug=ppgame.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/ppgame.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux-x86
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux-x86
-CND_ARTIFACT_NAME_Release=quadtreevoxels
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/quadtreevoxels
+CND_ARTIFACT_NAME_Release=ppgame
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/ppgame
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Release=quadtreevoxels.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/quadtreevoxels.tar
+CND_PACKAGE_NAME_Release=ppgame.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/ppgame.tar
 #
 # include compiler specific variables
 #

@@ -35,7 +35,9 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/QuadTree.o \
+	${OBJECTDIR}/GameObject.o \
+	${OBJECTDIR}/GameWorld.o \
+	${OBJECTDIR}/Observer.o \
 	${OBJECTDIR}/main.o
 
 
@@ -57,22 +59,32 @@ LDLIBSOPTIONS=../../c++/SFML-2.1/lib/libsfml-graphics.so ../../c++/SFML-2.1/lib/
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/quadtreevoxels
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ppgame
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/quadtreevoxels: ../../c++/SFML-2.1/lib/libsfml-graphics.so
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ppgame: ../../c++/SFML-2.1/lib/libsfml-graphics.so
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/quadtreevoxels: ../../c++/SFML-2.1/lib/libsfml-system.so
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ppgame: ../../c++/SFML-2.1/lib/libsfml-system.so
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/quadtreevoxels: ../../c++/SFML-2.1/lib/libsfml-window.so
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ppgame: ../../c++/SFML-2.1/lib/libsfml-window.so
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/quadtreevoxels: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ppgame: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/quadtreevoxels ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ppgame ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/QuadTree.o: QuadTree.cpp 
+${OBJECTDIR}/GameObject.o: GameObject.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -I../../c++/SFML-2.1/include `pkg-config --cflags gl` `pkg-config --cflags glew` -std=c++11  -MMD -MP -MF $@.d -o ${OBJECTDIR}/QuadTree.o QuadTree.cpp
+	$(COMPILE.cc) -g -I../../c++/SFML-2.1/include `pkg-config --cflags gl` `pkg-config --cflags glew` -std=c++11  -MMD -MP -MF $@.d -o ${OBJECTDIR}/GameObject.o GameObject.cpp
+
+${OBJECTDIR}/GameWorld.o: GameWorld.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -I../../c++/SFML-2.1/include `pkg-config --cflags gl` `pkg-config --cflags glew` -std=c++11  -MMD -MP -MF $@.d -o ${OBJECTDIR}/GameWorld.o GameWorld.cpp
+
+${OBJECTDIR}/Observer.o: Observer.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -I../../c++/SFML-2.1/include `pkg-config --cflags gl` `pkg-config --cflags glew` -std=c++11  -MMD -MP -MF $@.d -o ${OBJECTDIR}/Observer.o Observer.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -85,7 +97,7 @@ ${OBJECTDIR}/main.o: main.cpp
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
-	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/quadtreevoxels
+	${RM} ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ppgame
 
 # Subprojects
 .clean-subprojects:
