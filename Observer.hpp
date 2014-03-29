@@ -8,9 +8,15 @@
 #ifndef OBSERVER_HPP
 #define	OBSERVER_HPP
 
+#include <vector>
+#include <string>
+#include "GameObject.hpp"
+
 class Observer {
 public:
     Observer();
+    virtual std::vector<std::string> getObservedEvents()=0;
+    virtual void notify(GameObject* object, std::string event)=0;
     virtual ~Observer();
 private:
 

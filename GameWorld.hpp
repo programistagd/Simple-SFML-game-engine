@@ -9,6 +9,8 @@
 #define	GAMEWORLD_HPP
 
 #include "GameObject.hpp"
+class Observer;
+#include "Observer.hpp"
 #include <list>
 
 class GameWorld {
@@ -18,9 +20,16 @@ public:
     void renderFrame();
     void addObject(GameObject* object);
     virtual ~GameWorld();
+    
+    void addObserver(Observer* o);
+    void removeObserver(Observer* o);
+    
+    void notify(GameObject* object, std::string event);
+    
 private:
     sf::RenderWindow& window;
     std::list<GameObject*> entities;
+    std::map<std::string,std::list<Observer*>> observers;
 };
 
 #endif	/* GAMEWORLD_HPP */

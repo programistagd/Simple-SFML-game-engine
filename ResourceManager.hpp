@@ -11,7 +11,7 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <map>
 #include <string>
-
+class GameWorld;
 #include "GameWorld.hpp"
 
 class ResourceManager {

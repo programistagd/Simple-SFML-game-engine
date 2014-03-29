@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/DynamicEntity.o \
 	${OBJECTDIR}/GameObject.o \
 	${OBJECTDIR}/GameWorld.o \
 	${OBJECTDIR}/Observer.o \
@@ -66,6 +67,11 @@ LDLIBSOPTIONS=
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ppgame: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ppgame ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/DynamicEntity.o: DynamicEntity.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/DynamicEntity.o DynamicEntity.cpp
 
 ${OBJECTDIR}/GameObject.o: GameObject.cpp 
 	${MKDIR} -p ${OBJECTDIR}

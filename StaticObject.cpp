@@ -27,6 +27,6 @@ GameObject* StaticObject::create(ResourceManager* rm, std::stringstream& in){
     float x,y;
     std::string texture;
     in>>texture>>x>>y;
-    StaticObject* obj = new StaticObject(rm.loadTexture(texture), x,y);
+    StaticObject* obj = new StaticObject(rm->loadTexture(texture), x,y);
     return obj;
 }

@@ -14,17 +14,22 @@ class ResourceManager;
 class GameObject;
 #include "ResourceManager.hpp"
 
+struct AABB{
+    sf::Vector2f start, end;
+};
+
 class GameObject {
 public:
     GameObject();
     virtual void draw(sf::RenderWindow& window)=0;
     virtual void update(float dt)=0;
     
+    AABB aabb;
+    
     static GameObject* create(ResourceManager* rm, std::stringstream& in);
     
     inline bool shouldBeRemoved(){return shouldbedestroyed;}
     virtual ~GameObject();
-protected:
     inline void destroy(){shouldbedestroyed=true;}
 private:
     bool shouldbedestroyed = false;

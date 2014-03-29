@@ -23,10 +23,34 @@ void GameWorld::renderFrame(){
 
 void GameWorld::update(float dt){
     for(std::list<GameObject*>::iterator i = entities.begin();i!=entities.end();i++){//remove "dead" enities
-        if((*i)->shouldBeRemoved())
+        if((*i)->shouldBeRemoved()){
+            delete *i;
             i=entities.erase(i);
+        }
     }
     for(GameObject* i : entities){
         i->update(dt);
+    }
+}
+
+void GameWorld::addObject(GameObject* object){
+    entities.push_back(object);
+}
+
+void GameWorld::addObserver(Observer* o){
+    for(std::string e : o->getObservedEvents()){
+        observers[e].push_back(o);
+    }
+}
+
+void GameWorld::removeObserver(Observer* o){
+    for(std::string e : o->getObservedEvents()){
+        observers[e].remove(o);
+    }
+}
+
+void GameWorld::notify(GameObject* object, std::string event){
+    for(Observer* o : observers[event]){
+        o->notify(object, event);
     }
 }

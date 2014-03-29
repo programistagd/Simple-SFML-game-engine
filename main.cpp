@@ -42,6 +42,38 @@ int main(int argc, char** argv) {
             // "close requested" event: we close the window
             if (event.type == sf::Event::Closed)
                 window.close();
+            if (event.type == sf::Event::KeyPressed){
+                switch(event.key.code){
+                    case sf::Keyboard::Left:
+                        world.notify(nullptr, std::string("PressLeft"));
+                        break;
+                    case sf::Keyboard::Right:
+                        world.notify(nullptr, std::string("PressRight"));
+                        break;
+                    case sf::Keyboard::Down:
+                        world.notify(nullptr, std::string("PressUp"));
+                        break;
+                    case sf::Keyboard::Up:
+                        world.notify(nullptr, std::string("PressDown"));
+                        break;
+                }
+            }
+            if (event.type == sf::Event::KeyReleased){
+                switch(event.key.code){
+                    case sf::Keyboard::Left:
+                        world.notify(nullptr, std::string("ReleaseLeft"));
+                        break;
+                    case sf::Keyboard::Right:
+                        world.notify(nullptr, std::string("ReleaseRight"));
+                        break;
+                    case sf::Keyboard::Down:
+                        world.notify(nullptr, std::string("ReleaseUp"));
+                        break;
+                    case sf::Keyboard::Up:
+                        world.notify(nullptr, std::string("ReleaseDown"));
+                        break;
+                }
+            }
         }
         
         world.update(dt);
