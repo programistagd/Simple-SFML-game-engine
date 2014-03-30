@@ -15,6 +15,7 @@
 #include "GameObject.hpp"
 #include "GameWorld.hpp"
 #include "ResourceManager.hpp"
+#include "StaticObject.hpp"
 
 const unsigned int WIDTH=800,HEIGHT=600;
 
@@ -29,6 +30,7 @@ int main(int argc, char** argv) {
     
     GameWorld world(window);
     ResourceManager resourceManager;
+    resourceManager.registerType(new StaticObject());
     resourceManager.loadWorld(world, "level1.lvl");
     
     sf::Clock timer;

@@ -8,6 +8,10 @@
 #include "StaticObject.hpp"
 #include "ResourceManager.hpp"
 
+StaticObject::StaticObject(){
+    
+}
+
 StaticObject::StaticObject(sf::Texture* texture, float x, float y) : obj(*texture){
     obj.setPosition(x,y);
 }
@@ -28,5 +32,12 @@ GameObject* StaticObject::create(ResourceManager* rm, std::stringstream& in){
     std::string texture;
     in>>texture>>x>>y;
     StaticObject* obj = new StaticObject(rm->loadTexture(texture), x,y);
+    if(!in.eof()){
+        in>>obj->aabb.start.x>>obj->aabb.start.y>>obj->aabb.end.x>>obj->aabb.end.y;
+    }
     return obj;
+}
+
+std::string StaticObject::getType(){
+    return "StaticObject";
 }

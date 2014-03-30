@@ -26,6 +26,8 @@ public:
     
     void notify(GameObject* object, std::string event);
     
+    void cleanUp();
+    
 private:
     sf::RenderWindow& window;
     std::list<GameObject*> entities;

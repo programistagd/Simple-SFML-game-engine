@@ -14,11 +14,13 @@
 
 class StaticObject : public GameObject{
 public:
+    StaticObject();
     StaticObject(sf::Texture* texture, float x, float y);
     virtual void draw(sf::RenderWindow& window);
     virtual void update(float dt);
     
-    static GameObject* create(ResourceManager* rm,  std::stringstream& in);
+    virtual GameObject* create(ResourceManager* rm,  std::stringstream& in);
+    virtual std::string getType();
     
     virtual ~StaticObject();
 private:

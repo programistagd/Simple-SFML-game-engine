@@ -20,9 +20,12 @@ public:
     virtual ~ResourceManager();
     sf::Texture* loadTexture(std::string file);
     
+    void registerType(GameObject* templ);
+    
     void loadWorld(GameWorld& world, std::string file);
 private:
     std::map<std::string, sf::Texture> textures;
+    std::map<std::string, GameObject*> templates;
 };
 
 #endif	/* RESOURCEMANAGER_HPP */

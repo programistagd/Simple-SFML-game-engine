@@ -1,1 +1,3 @@
-StaticObj test.png 10 50
+#type	parameters (texture x y)
+StaticObject test.png 10 50
+StaticObject test.png 300 70

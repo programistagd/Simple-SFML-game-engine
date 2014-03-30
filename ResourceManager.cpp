@@ -14,6 +14,9 @@ ResourceManager::ResourceManager() {
 }
 
 ResourceManager::~ResourceManager() {
+    for(std::map<std::string, GameObject*>::iterator i=templates.begin();i!=templates.end();i++){
+        delete (i->second);
+    }
 }
 
 sf::Texture*  ResourceManager::loadTexture(std::string file){
@@ -32,12 +35,23 @@ void ResourceManager::loadWorld(GameWorld& world, std::string file){
     while(!f.eof()){
         std::string l;
         getline(f, l);
-        std::stringstream line(l);
         
+        std::stringstream line;
+        if(l.find('#')!=std::string::npos){
+            line<<l.substr(0, l.find('#'));
+        }
+        else{
+            line<<l;
+        }
         std::string type;
         line>>type;
-        if(type == "StaticObj"){
-            world.addObject(StaticObject::create(this, line));
+        if(templates[type]!=nullptr){
+            world.addObject(templates[type]->create(this, line));
         }
+        
     }
+}
+
+void ResourceManager::registerType(GameObject* templ){
+    templates[templ->getType()] = templ;
 }

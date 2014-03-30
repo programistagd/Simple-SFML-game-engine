@@ -6,6 +6,7 @@
  */
 
 #include <list>
+#include <set>
 
 #include "GameWorld.hpp"
 
@@ -34,6 +35,7 @@ void GameWorld::update(float dt){
 }
 
 void GameWorld::addObject(GameObject* object){
+    if(object==nullptr) return;
     entities.push_back(object);
 }
 
@@ -53,4 +55,20 @@ void GameWorld::notify(GameObject* object, std::string event){
     for(Observer* o : observers[event]){
         o->notify(object, event);
     }
+}
+
+void GameWorld::cleanUp(){
+    std::set<Observer*> toRemove;
+    for(std::map<std::string,std::list<Observer*>>::iterator i = observers.begin();i!=observers.end();i++){
+        for(Observer* o : (i->second))
+                toRemove.insert(o);
+    }
+    for(Observer* o : toRemove){
+        delete [] o;
+    }
+    for(GameObject* obj : entities){
+        delete [] obj;
+    }
+    observers.clear();
+    entities.clear();
 }
