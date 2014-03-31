@@ -27,7 +27,7 @@ public:
     AABB aabb;
     
     virtual GameObject* create(ResourceManager* rm, std::stringstream& in);
-    virtual std::string getType()=0;
+    virtual const std::string getType()=0;
     
     inline bool shouldBeRemoved(){return shouldbedestroyed;}
     virtual ~GameObject();

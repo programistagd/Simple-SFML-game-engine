@@ -24,6 +24,8 @@ public:
     void addObserver(Observer* o);
     void removeObserver(Observer* o);
     
+    const std::list<GameObject*>& getEntitiesOfType(std::string typeName);
+    
     void notify(GameObject* object, std::string event);
     
     void cleanUp();
@@ -31,6 +33,7 @@ public:
 private:
     sf::RenderWindow& window;
     std::list<GameObject*> entities;
+    std::map<std::string, std::list<GameObject*>> entitiesByType;
     std::map<std::string,std::list<Observer*>> observers;
 };
 

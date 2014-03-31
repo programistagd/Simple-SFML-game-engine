@@ -20,7 +20,7 @@ public:
     virtual void update(float dt);
     
     virtual GameObject* create(ResourceManager* rm,  std::stringstream& in);
-    virtual std::string getType();
+    virtual const std::string getType();
     
     virtual ~StaticObject();
 private:

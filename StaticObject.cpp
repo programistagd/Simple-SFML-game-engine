@@ -38,6 +38,6 @@ GameObject* StaticObject::create(ResourceManager* rm, std::stringstream& in){
     return obj;
 }
 
-std::string StaticObject::getType(){
+const std::string StaticObject::getType(){
     return "StaticObject";
 }
