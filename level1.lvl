@@ -1,5 +1,8 @@
 #type	parameters (texture x y)
 #StaticObject test.png 10 50
 Obstacle test.png 300 70
+Obstacle test.png 240 300
+Obstacle test.png 200 200
 Player 10 10
 Obstacle test.png 0 400 700 70
+Edible cherry.png 100 200

@@ -6,6 +6,8 @@
                    projectFiles="true">
       <logicalFolder name="f1" displayName="Objects" projectFiles="true">
         <logicalFolder name="f1" displayName="キチモイ" projectFiles="true">
+          <itemPath>Edible.cpp</itemPath>
+          <itemPath>Edible.hpp</itemPath>
           <itemPath>Obstacle.cpp</itemPath>
           <itemPath>Obstacle.hpp</itemPath>
           <itemPath>Player.cpp</itemPath>
@@ -72,6 +74,10 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="Edible.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Edible.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="GameObject.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="GameObject.hpp" ex="false" tool="3" flavor2="0">
@@ -124,6 +130,10 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="Edible.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="Edible.hpp" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="GameObject.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="GameObject.hpp" ex="false" tool="3" flavor2="0">

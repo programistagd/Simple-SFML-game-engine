@@ -7,6 +7,7 @@
 
 #include "Player.hpp"
 #include "Obstacle.hpp"
+#include "Edible.hpp"
 
 Player::Player() : observer(*this){
 }
@@ -26,7 +27,7 @@ void Player::update(float dt){
     dx = velocity*dt + 0.5f*acceleration*dt*dt;
     velocity += acceleration*dt;
     //Y-axis
-    if(collides(vertical+image.getPosition()+dx)){
+    if(collides(vertical+image.getPosition()+dx)){ //normal version
         bool collision = true;
         for(int i=0;i<7;i++){
             dx.y*=0.5f;
@@ -41,7 +42,22 @@ void Player::update(float dt){
             velocity.y = 0;
         }
     }
-    if(collides(horizontal+image.getPosition()+dx)){
+    /*if(velocity.y > 0.f && collides(feet+image.getPosition()+dx)){ //jumping version // make special obstacle type for it
+        bool collision = true;
+        for(int i=0;i<7;i++){
+            dx.y*=0.5f;
+            velocity.y*=0.5f;
+            if(!collides(vertical+image.getPosition()+dx)){
+                collision = false;
+                break;
+            }
+        }
+        if(collision){
+            dx.y = 0;
+            velocity.y = 0;
+        }
+    }*/
+    if(collides(/*feet+sf::Vector2f(0,-5)*/horizontal+image.getPosition()+dx)){
         bool collision = true;
         for(int i=0;i<7;i++){
             dx.x*=0.5f;
@@ -83,8 +99,8 @@ GameObject* Player::create(GameWorld& world, ResourceManager* rm, std::stringstr
     obj->vertical.start = sf::Vector2f(obj->image.getTexture()->getSize().x/2.f, 0);
     obj->vertical.end = sf::Vector2f(obj->image.getTexture()->getSize().x/2.f,obj->image.getTexture()->getSize().y);
     
-    obj->feet.start = sf::Vector2f(0, obj->image.getTexture()->getSize().y-2);
-    obj->feet.end = sf::Vector2f(obj->image.getTexture()->getSize().x, obj->image.getTexture()->getSize().y+5);
+    obj->feet.start = sf::Vector2f(5, obj->image.getTexture()->getSize().y-2);
+    obj->feet.end = sf::Vector2f(obj->image.getTexture()->getSize().x-10, obj->image.getTexture()->getSize().y+5);
     
     world.addObserver(&obj->observer);
     
@@ -107,6 +123,7 @@ Player::PlayerObserver::PlayerObserver(Player& p) : player(p){
     events.push_back("PressRight");
     events.push_back("ReleaseRight");
     events.push_back("PressUp");
+    events.push_back("EdibleCollision");
 }
 
 std::vector<std::string> Player::PlayerObserver::getObservedEvents(){
@@ -133,6 +150,17 @@ void Player::PlayerObserver::notify(GameObject* object, std::string event){
         player.velocity.x = player.speed;
     else
         player.velocity.x = 0;
+    
+    if(event == "EdibleCollision"){
+        
+        Edible* edible = reinterpret_cast<Edible*>(object);
+        
+        
+        
+        //TODO
+        
+        object->destroy();
+    }
 }
 
 Player::PlayerObserver::~PlayerObserver(){

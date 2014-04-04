@@ -18,7 +18,7 @@ class GameObject;
 struct AABB{
     sf::Vector2f start, end;
     AABB operator+(const sf::Vector2f& v);
-    bool collides(AABB& other);
+    bool collides(AABB other);
 };
 
 class GameObject {

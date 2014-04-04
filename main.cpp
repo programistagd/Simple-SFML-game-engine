@@ -17,6 +17,7 @@
 #include "ResourceManager.hpp"
 #include "StaticObject.hpp"
 #include "Obstacle.hpp"
+#include "Edible.hpp"
 #include "Player.hpp"
 
 const unsigned int WIDTH=800,HEIGHT=600;
@@ -34,6 +35,7 @@ int main(int argc, char** argv) {
     ResourceManager resourceManager;
     resourceManager.registerType(new StaticObject());
     resourceManager.registerType(new Obstacle());
+    resourceManager.registerType(new Edible());
     resourceManager.registerType(new Player());
     resourceManager.loadWorld(world, "level1.lvl");
     

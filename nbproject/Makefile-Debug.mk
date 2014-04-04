@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/Edible.o \
 	${OBJECTDIR}/GameObject.o \
 	${OBJECTDIR}/GameWorld.o \
 	${OBJECTDIR}/Observer.o \
@@ -74,6 +75,11 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ppgame: ../../c++/SFML-2.1/lib/libsfm
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ppgame: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ppgame ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/Edible.o: Edible.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -I../../c++/SFML-2.1/include `pkg-config --cflags gl` `pkg-config --cflags glew` -std=c++11  -MMD -MP -MF $@.d -o ${OBJECTDIR}/Edible.o Edible.cpp
 
 ${OBJECTDIR}/GameObject.o: GameObject.cpp 
 	${MKDIR} -p ${OBJECTDIR}

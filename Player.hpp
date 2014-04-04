@@ -22,6 +22,10 @@ public:
     virtual GameObject* create(GameWorld& world, ResourceManager* rm, std::stringstream& in);
     virtual const std::string getType();
     
+    inline AABB getAABB(){
+        return horizontal + image.getPosition();
+    }
+    
     virtual ~Player();
 private:
     //sf::Vector2f position;
@@ -29,7 +33,7 @@ private:
     float speed = 100.f;
     sf::Sprite image;
     bool collides(AABB aabb);
-    AABB horizontal, vertical, feet;
+    AABB horizontal, feet, vertical;
     GameWorld* world;
     class PlayerObserver : public Observer{
     public:
