@@ -38,6 +38,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/GameObject.o \
 	${OBJECTDIR}/GameWorld.o \
 	${OBJECTDIR}/Observer.o \
+	${OBJECTDIR}/Obstacle.o \
 	${OBJECTDIR}/Player.o \
 	${OBJECTDIR}/ResourceManager.o \
 	${OBJECTDIR}/StaticObject.o \
@@ -88,6 +89,11 @@ ${OBJECTDIR}/Observer.o: Observer.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -I../../c++/SFML-2.1/include `pkg-config --cflags gl` `pkg-config --cflags glew` -std=c++11  -MMD -MP -MF $@.d -o ${OBJECTDIR}/Observer.o Observer.cpp
+
+${OBJECTDIR}/Obstacle.o: Obstacle.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -I../../c++/SFML-2.1/include `pkg-config --cflags gl` `pkg-config --cflags glew` -std=c++11  -MMD -MP -MF $@.d -o ${OBJECTDIR}/Obstacle.o Obstacle.cpp
 
 ${OBJECTDIR}/Player.o: Player.cpp 
 	${MKDIR} -p ${OBJECTDIR}

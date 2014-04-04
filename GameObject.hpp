@@ -13,9 +13,12 @@
 class ResourceManager;
 class GameObject;
 #include "ResourceManager.hpp"
+#include "GameWorld.hpp"
 
 struct AABB{
     sf::Vector2f start, end;
+    AABB operator+(const sf::Vector2f& v);
+    bool collides(AABB& other);
 };
 
 class GameObject {
@@ -24,9 +27,7 @@ public:
     virtual void draw(sf::RenderWindow& window)=0;
     virtual void update(float dt)=0;
     
-    AABB aabb;
-    
-    virtual GameObject* create(ResourceManager* rm, std::stringstream& in);
+    virtual GameObject* create(GameWorld& world, ResourceManager* rm, std::stringstream& in);
     virtual const std::string getType()=0;
     
     inline bool shouldBeRemoved(){return shouldbedestroyed;}

@@ -16,6 +16,8 @@
 #include "GameWorld.hpp"
 #include "ResourceManager.hpp"
 #include "StaticObject.hpp"
+#include "Obstacle.hpp"
+#include "Player.hpp"
 
 const unsigned int WIDTH=800,HEIGHT=600;
 
@@ -31,6 +33,8 @@ int main(int argc, char** argv) {
     GameWorld world(window);
     ResourceManager resourceManager;
     resourceManager.registerType(new StaticObject());
+    resourceManager.registerType(new Obstacle());
+    resourceManager.registerType(new Player());
     resourceManager.loadWorld(world, "level1.lvl");
     
     sf::Clock timer;
@@ -52,10 +56,10 @@ int main(int argc, char** argv) {
                     case sf::Keyboard::Right:
                         world.notify(nullptr, std::string("PressRight"));
                         break;
-                    case sf::Keyboard::Down:
+                    case sf::Keyboard::Up:
                         world.notify(nullptr, std::string("PressUp"));
                         break;
-                    case sf::Keyboard::Up:
+                    case sf::Keyboard::Down:
                         world.notify(nullptr, std::string("PressDown"));
                         break;
                 }

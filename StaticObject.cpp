@@ -27,14 +27,14 @@ void StaticObject::update(float dt){
     
 }
 
-GameObject* StaticObject::create(ResourceManager* rm, std::stringstream& in){
+GameObject* StaticObject::create(GameWorld& world, ResourceManager* rm, std::stringstream& in){
     float x,y;
     std::string texture;
     in>>texture>>x>>y;
     StaticObject* obj = new StaticObject(rm->loadTexture(texture), x,y);
-    if(!in.eof()){
+    /*if(!in.eof()){
         in>>obj->aabb.start.x>>obj->aabb.start.y>>obj->aabb.end.x>>obj->aabb.end.y;
-    }
+    }*/
     return obj;
 }
 

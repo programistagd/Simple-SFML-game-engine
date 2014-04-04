@@ -46,7 +46,7 @@ void ResourceManager::loadWorld(GameWorld& world, std::string file){
         std::string type;
         line>>type;
         if(templates[type]!=nullptr){
-            world.addObject(templates[type]->create(this, line));
+            world.addObject(templates[type]->create(world, this, line));
         }
         
     }

@@ -19,7 +19,7 @@ public:
     virtual void draw(sf::RenderWindow& window);
     virtual void update(float dt);
     
-    virtual GameObject* create(ResourceManager* rm,  std::stringstream& in);
+    virtual GameObject* create(GameWorld& world, ResourceManager* rm,  std::stringstream& in);
     virtual const std::string getType();
     
     virtual ~StaticObject();
