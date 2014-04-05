@@ -173,3 +173,14 @@ std::string Player::dumpToString(){
     s<<getType()<<" "<<image.getPosition().x<<" "<<image.getPosition().y;
     return s.str();
 }
+#include <iostream>
+bool Player::intersects(sf::Vector2f point){
+    AABB pt;
+    pt.start = point;
+    pt.end = point;
+    return pt.collides(getAABB());
+}
+
+void Player::move(sf::Vector2f relative){
+    image.setPosition(relative);
+}

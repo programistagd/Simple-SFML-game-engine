@@ -23,6 +23,9 @@ public:
     virtual std::string dumpToString();
     virtual const std::string getType();
     
+    virtual bool intersects(sf::Vector2f point);
+    virtual void move(sf::Vector2f relative);
+    
     inline AABB getAABB(){
         return horizontal + image.getPosition();
     }
@@ -47,6 +50,8 @@ private:
         Player &player;
     } observer;
     
+    
+    float health = 100.f, eating = 100.f;
 
 };
 

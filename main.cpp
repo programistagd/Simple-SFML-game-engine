@@ -50,7 +50,10 @@ int main(int argc, char** argv) {
     
     sf::Clock timer;
     
-    sf::Vector2f editorMovement;
+    sf::Vector2f editorMovement;bool editing = false;
+    
+    /*sf::Vector2f mouseStart;*/
+    GameObject* moving=nullptr;
     
     while (window.isOpen())
     {
@@ -83,14 +86,20 @@ int main(int argc, char** argv) {
                     case sf::Keyboard::P:
                         bool _pp = world.isPaused();
                         if(_pp){
-                            temporaryFile.str("");
-                            temporaryFile.clear();
-                            resourceManager.saveWorld(world, temporaryFile);
-                            std::cout<<temporaryFile.str()<<"\n\n\n";
+                            if(editing){
+                                temporaryFile.str("");
+                                temporaryFile.clear();
+                                resourceManager.saveWorld(world, temporaryFile);
+                                //std::cout<<temporaryFile.str()<<"\n\n\n";
+                            }
+                            editing = false;
+                            moving = nullptr;
                         }
-                        else{
+                        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
                             world.cleanUp();
-                            resourceManager.loadWorld(world, temporaryFile);
+                            std::stringstream tmpStr(temporaryFile.str());
+                            resourceManager.loadWorld(world, tmpStr);
+                            editing = true;
                         }
                         world.setPaused(!_pp);
                         break;
@@ -124,10 +133,33 @@ int main(int argc, char** argv) {
                 v.setSize(event.size.width,event.size.height);
                 window.setView(v);
             }
+            
+            if(editing && event.type == sf::Event::MouseButtonPressed){
+                sf::Vector2f mouseCur = window.getView().getCenter()+sf::Vector2f(event.mouseButton.x,event.mouseButton.y)-.5f*window.getView().getSize();
+                for(GameObject* o : world.getEntitiesOfType("")){
+                    if(o->intersects(mouseCur)){
+                        //mouseStart = mouseCur;
+                        moving = o;
+                        std::cout<<"Caught!\n";
+                        break;
+                    }
+                }
+            }
+            if(editing && event.type == sf::Event::MouseMoved && moving!=nullptr){
+                sf::Vector2f mouseCur = window.getView().getCenter()-.5f*window.getView().getSize()+sf::Vector2f(event.mouseMove.x,event.mouseMove.y);
+                moving->move(mouseCur);
+            }
+            if(editing && event.type == sf::Event::MouseButtonReleased && moving!=nullptr){
+                moving = nullptr;
+            }
+            
         }
         
         if(world.isPaused()){
-            world.moveView(window.getView().getCenter()+editorMovement*dt*170.f);
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
+                world.moveView(window.getView().getCenter()+editorMovement*dt*600.f);
+            else
+                world.moveView(window.getView().getCenter()+editorMovement*dt*170.f);
         }
         
         world.update(dt);

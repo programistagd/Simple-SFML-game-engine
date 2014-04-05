@@ -58,3 +58,16 @@ std::string Edible::dumpToString(){
     s<<getType()<<" "<<textureName<<" "<<image.getPosition().x<<" "<<image.getPosition().y;
     return s.str();
 }
+
+bool Edible::intersects(sf::Vector2f point){
+    AABB pt;
+    pt.start = point;
+    pt.end = point;
+    return pt.collides(aabb);
+}
+
+void Edible::move(sf::Vector2f relative){
+    aabb = aabb + (-1.f*image.getPosition());
+    image.setPosition(relative);
+    aabb = aabb + image.getPosition();
+}

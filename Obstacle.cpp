@@ -58,3 +58,16 @@ std::string Obstacle::dumpToString(){
     }
     return s.str();
 }
+
+bool Obstacle::intersects(sf::Vector2f point){
+    AABB pt;
+    pt.start = point;
+    pt.end = point;
+    return pt.collides(aabb);
+}
+
+void Obstacle::move(sf::Vector2f relative){
+    aabb = aabb + (-1.f*image.getPosition());
+    image.setPosition(relative);
+    aabb = aabb + image.getPosition();
+}

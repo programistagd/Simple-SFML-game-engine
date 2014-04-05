@@ -93,6 +93,7 @@ void GameWorld::cleanUp(){
 }
 
 const std::list<GameObject*>& GameWorld::getEntitiesOfType(std::string typeName){
+    if(typeName == "" or typeName == "*") return entities;
     return entitiesByType[typeName];
 }
 

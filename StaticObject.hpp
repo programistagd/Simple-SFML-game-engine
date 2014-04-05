@@ -22,6 +22,9 @@ public:
     virtual GameObject* create(GameWorld& world, ResourceManager* rm,  std::stringstream& in);
     virtual const std::string getType();
     
+    virtual bool intersects(sf::Vector2f point);
+    virtual void move(sf::Vector2f relative);
+    
     virtual std::string dumpToString();
     
     virtual ~StaticObject();

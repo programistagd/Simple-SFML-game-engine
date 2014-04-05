@@ -32,6 +32,9 @@ public:
     
     virtual std::string dumpToString()=0;
     
+    virtual bool intersects(sf::Vector2f point)=0;
+    virtual void move(sf::Vector2f relative)=0;
+    
     inline bool shouldBeRemoved(){return shouldbedestroyed;}
     virtual ~GameObject();
     inline void destroy(){shouldbedestroyed=true;}

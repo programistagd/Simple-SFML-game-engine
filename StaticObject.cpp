@@ -50,3 +50,13 @@ std::string StaticObject::dumpToString(){
 const std::string StaticObject::getType(){
     return "StaticObject";
 }
+
+bool StaticObject::intersects(sf::Vector2f point){
+    if(point.x>obj.getPosition().x && point.x<obj.getPosition().x+obj.getTexture()->getSize().x && point.y>obj.getPosition().y && point.y<obj.getPosition().y+obj.getTexture()->getSize().y)
+        return true;
+    return false;
+}
+
+void StaticObject::move(sf::Vector2f relative){
+    obj.setPosition(relative);
+}
