@@ -20,11 +20,13 @@ public:
     AABB aabb;
     
     virtual GameObject* create(GameWorld& world, ResourceManager* rm, std::stringstream& in);
+    virtual std::string dumpToString();
     virtual const std::string getType();
     
     virtual ~Obstacle();
 private:
     sf::Sprite image;
+    std::string textureName;
 
 };
 

@@ -11,6 +11,7 @@
 #include "GameWorld.hpp"
 
 GameWorld::GameWorld(sf::RenderWindow& window) :window(window) {
+    dim.setFillColor(sf::Color(255,255,255,90));
 }
 
 GameWorld::~GameWorld() {
@@ -20,15 +21,31 @@ void GameWorld::renderFrame(){
     for(GameObject* i : entities){
         i->draw(window);
     }
+    if(paused){
+        sf::Vector2f size = window.getView().getSize();
+        dim.setPosition(window.getView().getCenter()-0.5f*size);
+        dim.setSize(size);
+        window.draw(dim);
+    }
 }
 
 void GameWorld::update(float dt){
+    sf::View view = window.getView();
+    if(view.getCenter()!=viewCenter){
+        view.setCenter(view.getCenter()*0.9f+viewCenter*0.1f);
+        window.setView(view);
+    }
+    
     for(std::list<GameObject*>::iterator i = entities.begin();i!=entities.end();i++){//remove "dead" enities
         if((*i)->shouldBeRemoved()){
             entitiesByType[(*i)->getType()].remove(*i);
             delete *i;
             i=entities.erase(i);
         }
+    }
+    
+    if(paused){
+        return;
     }
     for(GameObject* i : entities){
         i->update(dt);
@@ -69,7 +86,7 @@ void GameWorld::cleanUp(){
         delete [] o;
     }*/ //observers should be removed by owners
     for(GameObject* obj : entities){
-        delete [] obj;
+        delete obj;
     }
     observers.clear();
     entities.clear();
@@ -77,4 +94,8 @@ void GameWorld::cleanUp(){
 
 const std::list<GameObject*>& GameWorld::getEntitiesOfType(std::string typeName){
     return entitiesByType[typeName];
+}
+
+void GameWorld::moveView(sf::Vector2f newCenter){
+    viewCenter = newCenter;
 }

@@ -22,9 +22,12 @@ public:
     virtual GameObject* create(GameWorld& world, ResourceManager* rm,  std::stringstream& in);
     virtual const std::string getType();
     
+    virtual std::string dumpToString();
+    
     virtual ~StaticObject();
 private:
     sf::Sprite obj;
+    std::string textureName;
 };
 
 #endif	/* STATICOBJECT_HPP */

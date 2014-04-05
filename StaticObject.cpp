@@ -5,6 +5,8 @@
  * Created on 29 marzec 2014, 18:00
  */
 
+#include <CEGUI/CEGUIExceptions.h>
+
 #include "StaticObject.hpp"
 #include "ResourceManager.hpp"
 
@@ -32,10 +34,17 @@ GameObject* StaticObject::create(GameWorld& world, ResourceManager* rm, std::str
     std::string texture;
     in>>texture>>x>>y;
     StaticObject* obj = new StaticObject(rm->loadTexture(texture), x,y);
+    obj->textureName;
     /*if(!in.eof()){
         in>>obj->aabb.start.x>>obj->aabb.start.y>>obj->aabb.end.x>>obj->aabb.end.y;
     }*/
     return obj;
+}
+
+std::string StaticObject::dumpToString(){
+    std::stringstream s;
+    s<<getType()<<" "<<textureName<<" "<<obj.getPosition().x<<" "<<obj.getPosition().y;
+    return s.str();
 }
 
 const std::string StaticObject::getType(){

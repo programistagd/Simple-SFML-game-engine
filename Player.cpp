@@ -73,6 +73,7 @@ void Player::update(float dt){
         }
     }
     image.setPosition(image.getPosition()+dx);
+    world->moveView(image.getPosition()+0.5f*sf::Vector2f(image.getTexture()->getSize()));
 }
 
 void Player::draw(sf::RenderWindow& window){
@@ -165,4 +166,10 @@ void Player::PlayerObserver::notify(GameObject* object, std::string event){
 
 Player::PlayerObserver::~PlayerObserver(){
     
+}
+
+std::string Player::dumpToString(){
+    std::stringstream s;
+    s<<getType()<<" "<<image.getPosition().x<<" "<<image.getPosition().y;
+    return s.str();
 }

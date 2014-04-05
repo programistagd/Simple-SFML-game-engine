@@ -30,6 +30,8 @@ public:
     virtual GameObject* create(GameWorld& world, ResourceManager* rm, std::stringstream& in);
     virtual const std::string getType()=0;
     
+    virtual std::string dumpToString()=0;
+    
     inline bool shouldBeRemoved(){return shouldbedestroyed;}
     virtual ~GameObject();
     inline void destroy(){shouldbedestroyed=true;}

@@ -69,8 +69,6 @@
             <linkerLibFileItem>../../c++/SFML-2.1/lib/libsfml-graphics.so</linkerLibFileItem>
             <linkerLibFileItem>../../c++/SFML-2.1/lib/libsfml-system.so</linkerLibFileItem>
             <linkerLibFileItem>../../c++/SFML-2.1/lib/libsfml-window.so</linkerLibFileItem>
-            <linkerOptionItem>`pkg-config --libs gl`</linkerOptionItem>
-            <linkerOptionItem>`pkg-config --libs glew`</linkerOptionItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>

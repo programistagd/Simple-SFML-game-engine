@@ -27,14 +27,10 @@ sf::Texture*  ResourceManager::loadTexture(std::string file){
     return &tx;
 }
 
-void ResourceManager::loadWorld(GameWorld& world, std::string file){
-    std::fstream f;
-    f.open(file);
-    if(!f.good()) return;
-    
-    while(!f.eof()){
+void ResourceManager::loadWorld(GameWorld& world, std::istream& stream){
+    while(!stream.eof()){
         std::string l;
-        getline(f, l);
+        getline(stream, l);
         
         std::stringstream line;
         if(l.find('#')!=std::string::npos){
@@ -49,6 +45,12 @@ void ResourceManager::loadWorld(GameWorld& world, std::string file){
             world.addObject(templates[type]->create(world, this, line));
         }
         
+    }
+}
+
+void ResourceManager::saveWorld(GameWorld& world, std::ostream& stream){
+    for(GameObject* o : world.entities){
+        stream<<o->dumpToString()<<"\n";
     }
 }
 

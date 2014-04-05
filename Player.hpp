@@ -20,6 +20,7 @@ public:
     virtual void update(float dt);
 
     virtual GameObject* create(GameWorld& world, ResourceManager* rm, std::stringstream& in);
+    virtual std::string dumpToString();
     virtual const std::string getType();
     
     inline AABB getAABB(){

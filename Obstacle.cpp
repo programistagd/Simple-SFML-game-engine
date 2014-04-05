@@ -45,5 +45,16 @@ GameObject* Obstacle::create(GameWorld& world, ResourceManager* rm, std::strings
     }
     obj->aabb=obj->aabb+sf::Vector2f(x,y);
     
+    obj->textureName = texture;
+    
     return obj;
+}
+
+std::string Obstacle::dumpToString(){
+    std::stringstream s;
+    s<<getType()<<" "<<textureName<<" "<<image.getPosition().x<<" "<<image.getPosition().y;
+    if(image.getScale()!=sf::Vector2f(1.f,1.f)){
+        s<<" "<<image.getTexture()->getSize().x*image.getScale().x<<" "<<image.getTexture()->getSize().y*image.getScale().y;
+    }
+    return s.str();
 }

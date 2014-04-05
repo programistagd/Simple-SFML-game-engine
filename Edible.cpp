@@ -48,5 +48,13 @@ GameObject* Edible::create(GameWorld& world, ResourceManager* rm, std::stringstr
     
     obj->aabb=obj->aabb+sf::Vector2f(x,y);
     
+    obj->textureName = texture;
+    
     return obj;
+}
+
+std::string Edible::dumpToString(){
+    std::stringstream s;
+    s<<getType()<<" "<<textureName<<" "<<image.getPosition().x<<" "<<image.getPosition().y;
+    return s.str();
 }

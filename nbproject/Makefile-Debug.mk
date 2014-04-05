@@ -60,7 +60,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=../../c++/SFML-2.1/lib/libsfml-graphics.so ../../c++/SFML-2.1/lib/libsfml-system.so ../../c++/SFML-2.1/lib/libsfml-window.so `pkg-config --libs gl` `pkg-config --libs glew`  
+LDLIBSOPTIONS=../../c++/SFML-2.1/lib/libsfml-graphics.so ../../c++/SFML-2.1/lib/libsfml-system.so ../../c++/SFML-2.1/lib/libsfml-window.so
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
@@ -79,47 +79,47 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ppgame: ${OBJECTFILES}
 ${OBJECTDIR}/Edible.o: Edible.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -I../../c++/SFML-2.1/include `pkg-config --cflags gl` `pkg-config --cflags glew` -std=c++11  -MMD -MP -MF $@.d -o ${OBJECTDIR}/Edible.o Edible.cpp
+	$(COMPILE.cc) -g -I../../c++/SFML-2.1/include -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Edible.o Edible.cpp
 
 ${OBJECTDIR}/GameObject.o: GameObject.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -I../../c++/SFML-2.1/include `pkg-config --cflags gl` `pkg-config --cflags glew` -std=c++11  -MMD -MP -MF $@.d -o ${OBJECTDIR}/GameObject.o GameObject.cpp
+	$(COMPILE.cc) -g -I../../c++/SFML-2.1/include -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/GameObject.o GameObject.cpp
 
 ${OBJECTDIR}/GameWorld.o: GameWorld.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -I../../c++/SFML-2.1/include `pkg-config --cflags gl` `pkg-config --cflags glew` -std=c++11  -MMD -MP -MF $@.d -o ${OBJECTDIR}/GameWorld.o GameWorld.cpp
+	$(COMPILE.cc) -g -I../../c++/SFML-2.1/include -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/GameWorld.o GameWorld.cpp
 
 ${OBJECTDIR}/Observer.o: Observer.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -I../../c++/SFML-2.1/include `pkg-config --cflags gl` `pkg-config --cflags glew` -std=c++11  -MMD -MP -MF $@.d -o ${OBJECTDIR}/Observer.o Observer.cpp
+	$(COMPILE.cc) -g -I../../c++/SFML-2.1/include -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Observer.o Observer.cpp
 
 ${OBJECTDIR}/Obstacle.o: Obstacle.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -I../../c++/SFML-2.1/include `pkg-config --cflags gl` `pkg-config --cflags glew` -std=c++11  -MMD -MP -MF $@.d -o ${OBJECTDIR}/Obstacle.o Obstacle.cpp
+	$(COMPILE.cc) -g -I../../c++/SFML-2.1/include -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Obstacle.o Obstacle.cpp
 
 ${OBJECTDIR}/Player.o: Player.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -I../../c++/SFML-2.1/include `pkg-config --cflags gl` `pkg-config --cflags glew` -std=c++11  -MMD -MP -MF $@.d -o ${OBJECTDIR}/Player.o Player.cpp
+	$(COMPILE.cc) -g -I../../c++/SFML-2.1/include -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/Player.o Player.cpp
 
 ${OBJECTDIR}/ResourceManager.o: ResourceManager.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -I../../c++/SFML-2.1/include `pkg-config --cflags gl` `pkg-config --cflags glew` -std=c++11  -MMD -MP -MF $@.d -o ${OBJECTDIR}/ResourceManager.o ResourceManager.cpp
+	$(COMPILE.cc) -g -I../../c++/SFML-2.1/include -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/ResourceManager.o ResourceManager.cpp
 
 ${OBJECTDIR}/StaticObject.o: StaticObject.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -I../../c++/SFML-2.1/include `pkg-config --cflags gl` `pkg-config --cflags glew` -std=c++11  -MMD -MP -MF $@.d -o ${OBJECTDIR}/StaticObject.o StaticObject.cpp
+	$(COMPILE.cc) -g -I../../c++/SFML-2.1/include -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/StaticObject.o StaticObject.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -I../../c++/SFML-2.1/include `pkg-config --cflags gl` `pkg-config --cflags glew` -std=c++11  -MMD -MP -MF $@.d -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -g -I../../c++/SFML-2.1/include -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/main.o main.cpp
 
 # Subprojects
 .build-subprojects:
