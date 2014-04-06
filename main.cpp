@@ -29,6 +29,13 @@ const unsigned int WIDTH=800,HEIGHT=600;
 
 sf::Font globalMainFont;
 
+void saveFile(std::string fname, std::string data){
+    std::ofstream out;
+    out.open(fname, std::ios::out|std::ios::trunc);
+    out<<data;
+    out.close();
+}
+
 /*
  * 
  */
@@ -97,24 +104,32 @@ int main(int argc, char** argv) {
                         editorMovement.y = 10.f;
                         break;
                     case sf::Keyboard::P:
-                        bool _pp = world.isPaused();
-                        if(_pp){
-                            if(editing){
-                                temporaryFile.str("");
-                                temporaryFile.clear();
-                                resourceManager.saveWorld(world, temporaryFile);
-                                //std::cout<<temporaryFile.str()<<"\n\n\n";
+                        {
+                            bool _pp = world.isPaused();
+                            if(_pp){
+                                if(editing){
+                                    temporaryFile.str("");
+                                    temporaryFile.clear();
+                                    resourceManager.saveWorld(world, temporaryFile);
+                                    //std::cout<<temporaryFile.str()<<"\n\n\n";
+                                }
+                                editing = false;
+                                moving = nullptr;
                             }
-                            editing = false;
-                            moving = nullptr;
+                            else if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
+                                world.cleanUp();
+                                std::stringstream tmpStr(temporaryFile.str());
+                                resourceManager.loadWorld(world, tmpStr);
+                                editing = true;
+                            }
+                            world.setPaused(!_pp);
                         }
-                        else if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)){
-                            world.cleanUp();
-                            std::stringstream tmpStr(temporaryFile.str());
-                            resourceManager.loadWorld(world, tmpStr);
-                            editing = true;
-                        }
-                        world.setPaused(!_pp);
+                        break;
+                    case sf::Keyboard::S:
+                        saveFile("savedLevel.lvl", temporaryFile.str());
+                        break;
+                    case sf::Keyboard::R:
+                        world.changeScene("savedLevel.lvl");
                         break;
                 }
             }

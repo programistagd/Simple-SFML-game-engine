@@ -54,7 +54,7 @@ std::string Obstacle::dumpToString(){
     std::stringstream s;
     s<<getType()<<" "<<textureName<<" "<<image.getPosition().x<<" "<<image.getPosition().y<<" "<<jumpable;
     if(image.getScale()!=sf::Vector2f(1.f,1.f)){
-        s<<" "<<image.getLocalBounds().width<<" "<<image.getLocalBounds().height;
+        s<<" "<<image.getTexture()->getSize().x*image.getScale().x<<" "<<image.getTexture()->getSize().y*image.getScale().y;
     }
     return s.str();
 }

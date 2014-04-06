@@ -44,7 +44,7 @@ GameObject* TextSign::create(GameWorld& world, ResourceManager* rm, std::strings
 
 std::string TextSign::dumpToString(){
     std::stringstream s;
-    s<<getType()<<" "<<std::string(text.getString())<<" "<<text.getPosition().x<<" "<<text.getPosition().y;
+    s<<getType()<<" "<<std::string(text.getString())<<"\" "<<text.getPosition().x<<" "<<text.getPosition().y;
     return s.str();
 }
 
