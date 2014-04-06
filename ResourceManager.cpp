@@ -24,6 +24,7 @@ sf::Texture*  ResourceManager::loadTexture(std::string file){
     
     sf::Texture& tx = textures[file];
     tx.loadFromFile(file);
+    tx.setSmooth(true);
     return &tx;
 }
 

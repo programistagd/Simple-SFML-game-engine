@@ -29,7 +29,7 @@ GameObject* Obstacle::create(GameWorld& world, ResourceManager* rm, std::strings
     Obstacle* obj = new Obstacle();
     float x,y;
     std::string texture;
-    in>>texture>>x>>y;
+    in>>texture>>x>>y>>obj->jumpable;
     sf::Texture* tex = rm->loadTexture(texture);
     obj->image.setTexture(*tex);
     obj->image.setPosition(x,y);
@@ -52,7 +52,7 @@ GameObject* Obstacle::create(GameWorld& world, ResourceManager* rm, std::strings
 
 std::string Obstacle::dumpToString(){
     std::stringstream s;
-    s<<getType()<<" "<<textureName<<" "<<image.getPosition().x<<" "<<image.getPosition().y;
+    s<<getType()<<" "<<textureName<<" "<<image.getPosition().x<<" "<<image.getPosition().y<<" "<<jumpable;
     if(image.getScale()!=sf::Vector2f(1.f,1.f)){
         s<<" "<<image.getTexture()->getSize().x*image.getScale().x<<" "<<image.getTexture()->getSize().y*image.getScale().y;
     }

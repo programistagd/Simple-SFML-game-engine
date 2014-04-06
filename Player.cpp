@@ -17,6 +17,10 @@ Player::~Player() {
 
 void Player::update(float dt){
     
+    //MECHANICS
+    eating-=3.f*dt;
+    
+    
     // COLLISIONS
     //probably only dynamic obj in the game
     //try to move (differential x" equation (with g force and movement v))
@@ -42,27 +46,13 @@ void Player::update(float dt){
             velocity.y = 0;
         }
     }
-    /*if(velocity.y > 0.f && collides(feet+image.getPosition()+dx)){ //jumping version // make special obstacle type for it
-        bool collision = true;
-        for(int i=0;i<7;i++){
-            dx.y*=0.5f;
-            velocity.y*=0.5f;
-            if(!collides(vertical+image.getPosition()+dx)){
-                collision = false;
-                break;
-            }
-        }
-        if(collision){
-            dx.y = 0;
-            velocity.y = 0;
-        }
-    }*/
-    if(collides(/*feet+sf::Vector2f(0,-5)*/horizontal+image.getPosition()+dx)){
+    
+    if(collides(horizontal+image.getPosition()+dx)){
         bool collision = true;
         for(int i=0;i<7;i++){
             dx.x*=0.5f;
             velocity.x*=0.5f;
-            if(!collides(vertical+image.getPosition()+dx)){
+            if(!collides(horizontal+image.getPosition()+dx)){
                 collision = false;
                 break;
             }
@@ -78,6 +68,17 @@ void Player::update(float dt){
 
 void Player::draw(sf::RenderWindow& window){
     window.draw(image);
+    
+    //draw bars
+    sf::RectangleShape b1,b2;
+    b1.setPosition(image.getPosition()+sf::Vector2f(20, -30));
+    b1.setSize(sf::Vector2f(health*.5f, 10));
+    b1.setFillColor(sf::Color(255,0,0,160));
+    window.draw(b1);
+    b1.setPosition(image.getPosition()+sf::Vector2f(20, -20));
+    b1.setSize(sf::Vector2f(eating*.5f, 10));
+    b1.setFillColor(sf::Color(255,255,0,160));
+    window.draw(b1);
 }
 
 const std::string Player::getType(){
@@ -112,6 +113,9 @@ GameObject* Player::create(GameWorld& world, ResourceManager* rm, std::stringstr
 bool Player::collides(AABB aabb){
     for(GameObject* obj : world->getEntitiesOfType("Obstacle")){
         Obstacle* o = reinterpret_cast<Obstacle*>(obj);
+        if(o->isJumpable()){
+            if((velocity.y<=0.f || aabb.end.y-6>o->aabb.start.y) && !(aabb.start-aabb.end == feet.start - feet.end)) continue;
+        }
         if(aabb.collides(o->aabb))
             return true;
     }
@@ -124,6 +128,7 @@ Player::PlayerObserver::PlayerObserver(Player& p) : player(p){
     events.push_back("PressRight");
     events.push_back("ReleaseRight");
     events.push_back("PressUp");
+    events.push_back("PressDown");
     events.push_back("EdibleCollision");
 }
 
@@ -141,8 +146,12 @@ void Player::PlayerObserver::notify(GameObject* object, std::string event){
         left = false;
     if(event == "ReleaseRight")
         right = false;
-    if(event == "PressUp" && player.collides(player.feet+player.image.getPosition()))
+    if(event == "PressUp" && (player.doubleJump || player.collides(player.feet+player.image.getPosition()))){
         player.velocity.y = -player.acceleration.y;
+        player.doubleJump=!player.doubleJump;
+    }
+    if(event == "PressDown" && !player.collides(player.feet+player.image.getPosition()))
+        player.velocity.y += player.acceleration.y;
     
     if(left&&right);
     else if(left)
@@ -156,9 +165,12 @@ void Player::PlayerObserver::notify(GameObject* object, std::string event){
         
         Edible* edible = reinterpret_cast<Edible*>(object);
         
-        
-        
-        //TODO
+        if(edible->hp>0){
+            player.eating+=edible->hp;
+        }
+        else{
+            player.health+=edible->hp;
+        }
         
         object->destroy();
     }
@@ -173,7 +185,7 @@ std::string Player::dumpToString(){
     s<<getType()<<" "<<image.getPosition().x<<" "<<image.getPosition().y;
     return s.str();
 }
-#include <iostream>
+
 bool Player::intersects(sf::Vector2f point){
     AABB pt;
     pt.start = point;
@@ -183,4 +195,8 @@ bool Player::intersects(sf::Vector2f point){
 
 void Player::move(sf::Vector2f relative){
     image.setPosition(relative);
+}
+
+int Player::getZIndex() const{
+    return 100;
 }

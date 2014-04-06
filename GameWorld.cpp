@@ -56,6 +56,7 @@ void GameWorld::addObject(GameObject* object){
     if(object==nullptr) return;
     entities.push_back(object);
     entitiesByType[object->getType()].push_back(object);
+    updateZOrder();
 }
 
 void GameWorld::addObserver(Observer* o){
@@ -99,4 +100,12 @@ const std::list<GameObject*>& GameWorld::getEntitiesOfType(std::string typeName)
 
 void GameWorld::moveView(sf::Vector2f newCenter){
     viewCenter = newCenter;
+}
+
+bool compareZObj(const GameObject* a, const GameObject* b){
+    return (a->getZIndex()<b->getZIndex());
+}
+
+void GameWorld::updateZOrder(){
+    entities.sort(compareZObj);
 }

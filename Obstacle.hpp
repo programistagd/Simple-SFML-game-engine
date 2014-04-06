@@ -27,9 +27,15 @@ public:
     virtual void move(sf::Vector2f relative);
     
     virtual ~Obstacle();
+
+    inline bool isJumpable() const {
+        return jumpable;
+    }
+
 private:
     sf::Sprite image;
     std::string textureName;
+    bool jumpable;
 
 };
 

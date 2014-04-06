@@ -134,7 +134,7 @@ int main(int argc, char** argv) {
                 window.setView(v);
             }
             
-            if(editing && event.type == sf::Event::MouseButtonPressed){
+            if((world.isPaused() || editing) && event.type == sf::Event::MouseButtonPressed){
                 sf::Vector2f mouseCur = window.getView().getCenter()+sf::Vector2f(event.mouseButton.x,event.mouseButton.y)-.5f*window.getView().getSize();
                 for(GameObject* o : world.getEntitiesOfType("")){
                     if(o->intersects(mouseCur)){
@@ -145,11 +145,11 @@ int main(int argc, char** argv) {
                     }
                 }
             }
-            if(editing && event.type == sf::Event::MouseMoved && moving!=nullptr){
+            if((world.isPaused() || editing) && event.type == sf::Event::MouseMoved && moving!=nullptr){
                 sf::Vector2f mouseCur = window.getView().getCenter()-.5f*window.getView().getSize()+sf::Vector2f(event.mouseMove.x,event.mouseMove.y);
                 moving->move(mouseCur);
             }
-            if(editing && event.type == sf::Event::MouseButtonReleased && moving!=nullptr){
+            if((world.isPaused() || editing) && event.type == sf::Event::MouseButtonReleased && moving!=nullptr){
                 moving = nullptr;
             }
             

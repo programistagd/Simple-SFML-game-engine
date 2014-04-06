@@ -36,7 +36,7 @@ GameObject* Edible::create(GameWorld& world, ResourceManager* rm, std::stringstr
     obj->world = &world;
     float x,y;
     std::string texture;
-    in>>texture>>x>>y;
+    in>>texture>>x>>y>>obj->hp;
     //TODO check if texture <= template, then use it
     sf::Texture* tex = rm->loadTexture(texture);
     obj->image.setTexture(*tex);
@@ -55,7 +55,7 @@ GameObject* Edible::create(GameWorld& world, ResourceManager* rm, std::stringstr
 
 std::string Edible::dumpToString(){
     std::stringstream s;
-    s<<getType()<<" "<<textureName<<" "<<image.getPosition().x<<" "<<image.getPosition().y;
+    s<<getType()<<" "<<textureName<<" "<<image.getPosition().x<<" "<<image.getPosition().y<<" "<<hp;
     return s.str();
 }
 

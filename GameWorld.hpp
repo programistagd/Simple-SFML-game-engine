@@ -55,6 +55,8 @@ private:
     bool paused = false;
     
     sf::RectangleShape dim;
+    
+    void updateZOrder();
 };
 
 #endif	/* GAMEWORLD_HPP */

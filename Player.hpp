@@ -23,6 +23,8 @@ public:
     virtual std::string dumpToString();
     virtual const std::string getType();
     
+    virtual int getZIndex() const;
+    
     virtual bool intersects(sf::Vector2f point);
     virtual void move(sf::Vector2f relative);
     
@@ -52,6 +54,7 @@ private:
     
     
     float health = 100.f, eating = 100.f;
+    bool doubleJump=true;
 
 };
 

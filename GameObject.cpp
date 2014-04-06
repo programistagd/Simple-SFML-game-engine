@@ -32,3 +32,7 @@ bool AABB::collides(AABB other){
     if(end.x < other.start.x || end.y < other.start.y || start.x > other.end.x || start.y > other.end.y ) return false;
     return true;
 }
+
+int GameObject::getZIndex() const{
+    return 0;//default val
+}
