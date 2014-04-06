@@ -43,6 +43,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Player.o \
 	${OBJECTDIR}/ResourceManager.o \
 	${OBJECTDIR}/StaticObject.o \
+	${OBJECTDIR}/TextSign.o \
 	${OBJECTDIR}/main.o
 
 
@@ -109,6 +110,11 @@ ${OBJECTDIR}/StaticObject.o: StaticObject.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/StaticObject.o StaticObject.cpp
+
+${OBJECTDIR}/TextSign.o: TextSign.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/TextSign.o TextSign.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}

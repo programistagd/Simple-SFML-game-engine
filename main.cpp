@@ -21,10 +21,13 @@
 #include "Obstacle.hpp"
 #include "Edible.hpp"
 #include "Player.hpp"
+#include "TextSign.hpp"
 
 #include <iostream>
 
 const unsigned int WIDTH=800,HEIGHT=600;
+
+sf::Font globalMainFont;
 
 /*
  * 
@@ -36,12 +39,15 @@ int main(int argc, char** argv) {
     window.setVerticalSyncEnabled(true);
     window.setView(sf::View(sf::Vector2f(-500,300), sf::Vector2f(WIDTH, HEIGHT)));
     
-    GameWorld world(window);
+    globalMainFont.loadFromFile("FreeSans.ttf");
+    
     ResourceManager resourceManager;
+    GameWorld world(window, resourceManager);
     resourceManager.registerType(new StaticObject());
     resourceManager.registerType(new Obstacle());
     resourceManager.registerType(new Edible());
     resourceManager.registerType(new Player());
+    resourceManager.registerType(new TextSign());
     std::fstream gameFile("level1.lvl");
     resourceManager.loadWorld(world, gameFile);
     
@@ -57,6 +63,13 @@ int main(int argc, char** argv) {
     
     while (window.isOpen())
     {
+        if(world.hasChanged()){
+            temporaryFile.str("");
+            temporaryFile.clear();
+            resourceManager.saveWorld(world, temporaryFile);
+        }
+
+        
         float dt = timer.restart().asSeconds();
         sf::Event event;
         while (window.pollEvent(event))

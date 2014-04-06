@@ -7,10 +7,11 @@
 
 #include <list>
 #include <set>
+#include <fstream>
 
 #include "GameWorld.hpp"
 
-GameWorld::GameWorld(sf::RenderWindow& window) :window(window) {
+GameWorld::GameWorld(sf::RenderWindow& window,ResourceManager& resMgr) :window(window), resourceManager(resMgr) {
     dim.setFillColor(sf::Color(255,255,255,90));
 }
 
@@ -30,6 +31,16 @@ void GameWorld::renderFrame(){
 }
 
 void GameWorld::update(float dt){
+    
+    if(newScene!=""){
+        std::ifstream stream(newScene);
+        newScene = "";
+        cleanUp();
+        resourceManager.loadWorld(*this, stream);
+        changed = true;
+        viewCenter = sf::Vector2f(0,0);
+    }
+    
     sf::View view = window.getView();
     if(view.getCenter()!=viewCenter){
         view.setCenter(view.getCenter()*0.9f+viewCenter*0.1f);
@@ -108,4 +119,8 @@ bool compareZObj(const GameObject* a, const GameObject* b){
 
 void GameWorld::updateZOrder(){
     entities.sort(compareZObj);
+}
+
+void GameWorld::changeScene(std::string newScene){
+    this->newScene = newScene;
 }

@@ -18,7 +18,14 @@ Player::~Player() {
 void Player::update(float dt){
     
     //MECHANICS
-    eating-=3.f*dt;
+    eating-=5.f*dt;
+    
+    if(eating<0.f){
+        world->changeScene("ending1.lvl");
+    }
+    if(health<0.f){
+        world->changeScene("ending1.lvl");//TODO end2
+    }
     
     
     // COLLISIONS

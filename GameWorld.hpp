@@ -17,7 +17,7 @@ class Observer;
 class GameWorld {
     friend ResourceManager;
 public:
-    GameWorld(sf::RenderWindow& window);
+    GameWorld(sf::RenderWindow& window, ResourceManager& resMgr);
     void update(float dt);
     void renderFrame();
     void addObject(GameObject* object);
@@ -32,6 +32,8 @@ public:
     
     void moveView(sf::Vector2f newCenter);
     
+    void changeScene(std::string newScene);
+    
     void cleanUp();
 
     inline bool isPaused() const {
@@ -42,9 +44,14 @@ public:
         this->paused = paused;
     }
 
-    
+    inline bool hasChanged(){
+        if(!changed) return false;
+        changed = false;
+        return true;
+    }
     
 private:
+    bool changed = false;
     sf::RenderWindow& window;
     std::list<GameObject*> entities;
     std::map<std::string, std::list<GameObject*>> entitiesByType;
@@ -57,6 +64,10 @@ private:
     sf::RectangleShape dim;
     
     void updateZOrder();
+    
+    ResourceManager& resourceManager;
+    
+    std::string newScene = "";
 };
 
 #endif	/* GAMEWORLD_HPP */
