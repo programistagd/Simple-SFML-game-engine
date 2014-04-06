@@ -131,6 +131,13 @@ int main(int argc, char** argv) {
                     case sf::Keyboard::R:
                         world.changeScene("savedLevel.lvl");
                         break;
+                    case sf::Keyboard::A:
+                        std::cout<<"Input spawn pattern: ";
+                        std::string s;
+                        std::getline(std::cin, s, '\n');
+                        std::stringstream sprim(s);
+                        resourceManager.loadWorld(world, sprim);//using the feature that world isnt cleared by default
+                        break;
                 }
             }
             if (event.type == sf::Event::KeyReleased){

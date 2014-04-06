@@ -18,7 +18,7 @@ Player::~Player() {
 void Player::update(float dt){
     
     //MECHANICS
-    eating-=5.f*dt;
+    eating-=3.f*dt;
     
     if(eating<0.f){
         world->changeScene("ending1.lvl");
