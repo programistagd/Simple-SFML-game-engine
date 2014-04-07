@@ -32,7 +32,7 @@ public:
         return jumpable;
     }
 
-private:
+protected:
     sf::Sprite image;
     std::string textureName;
     bool jumpable;

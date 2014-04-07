@@ -38,6 +38,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Edible.o \
 	${OBJECTDIR}/GameObject.o \
 	${OBJECTDIR}/GameWorld.o \
+	${OBJECTDIR}/LevelSwitch.o \
 	${OBJECTDIR}/Observer.o \
 	${OBJECTDIR}/Obstacle.o \
 	${OBJECTDIR}/Player.o \
@@ -91,6 +92,11 @@ ${OBJECTDIR}/GameWorld.o: GameWorld.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -I../../c++/SFML-2.1/include -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/GameWorld.o GameWorld.cpp
+
+${OBJECTDIR}/LevelSwitch.o: LevelSwitch.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -I../../c++/SFML-2.1/include -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/LevelSwitch.o LevelSwitch.cpp
 
 ${OBJECTDIR}/Observer.o: Observer.cpp 
 	${MKDIR} -p ${OBJECTDIR}

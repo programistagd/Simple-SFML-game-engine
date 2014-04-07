@@ -22,6 +22,7 @@
 #include "Edible.hpp"
 #include "Player.hpp"
 #include "TextSign.hpp"
+#include "LevelSwitch.hpp"
 
 #include <iostream>
 
@@ -55,8 +56,11 @@ int main(int argc, char** argv) {
     resourceManager.registerType(new Edible());
     resourceManager.registerType(new Player());
     resourceManager.registerType(new TextSign());
-    std::fstream gameFile("level1.lvl");
-    resourceManager.loadWorld(world, gameFile);
+    resourceManager.registerType(new LevelSwitch());
+    {
+        std::fstream gameFile("level1.lvl");
+        resourceManager.loadWorld(world, gameFile);
+    }
     
     std::stringstream temporaryFile;
     resourceManager.saveWorld(world, temporaryFile);

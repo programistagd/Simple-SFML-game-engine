@@ -8,3 +8,4 @@ Obstacle test.png 0 400 0 700 70
 Edible cherry.png 100 200 20
 Edible cherry.png 100 100 -20
 TextSign Testujemy ten silnik" 100 100
+LevelSwitch test.png -100 0 level2.lvl 50 50

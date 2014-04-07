@@ -8,6 +8,7 @@
 #include "Player.hpp"
 #include "Obstacle.hpp"
 #include "Edible.hpp"
+#include "LevelSwitch.hpp"
 
 Player::Player() : observer(*this){
 }
@@ -71,6 +72,16 @@ void Player::update(float dt){
     }
     image.setPosition(image.getPosition()+dx);
     world->moveView(image.getPosition()+0.5f*sf::Vector2f(image.getTexture()->getSize()));
+    
+    //check for level switch collisions
+    for(GameObject* obj : world->getEntitiesOfType("LevelSwitch")){
+        LevelSwitch* o = reinterpret_cast<LevelSwitch*>(obj);
+        if(getAABB().collides(o->aabb)){
+            world->changeScene(o->getNextLevel());
+            break;
+        }
+    }
+    
 }
 
 void Player::draw(sf::RenderWindow& window){
