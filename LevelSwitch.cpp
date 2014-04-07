@@ -8,6 +8,7 @@
 #include "LevelSwitch.hpp"
 
 LevelSwitch::LevelSwitch() : Obstacle(){
+    jumpable = false;
 }
 
 LevelSwitch::~LevelSwitch() {
@@ -45,8 +46,11 @@ GameObject* LevelSwitch::create(GameWorld& world, ResourceManager* rm, std::stri
 
 std::string LevelSwitch::dumpToString(){
     std::stringstream s;
-    s<<getType()<<" "<<textureName<<" "<<image.getPosition().x<<" "<<image.getPosition().y<<" "<<nextLevel;
-    if(image.getScale()!=sf::Vector2f(1.f,1.f)){
+    s<<getType()<<" "<<textureName<<" "<<aabb.start.x<<" "<<aabb.start.y<<" "<<nextLevel;
+    if(textureName == "None"){
+        sf::Vector2f size = aabb.end-aabb.start;
+        s<<" "<<size.x<<" "<<size.y;
+    }else if(image.getScale()!=sf::Vector2f(1.f,1.f)){
         s<<" "<<image.getTexture()->getSize().x*image.getScale().x<<" "<<image.getTexture()->getSize().y*image.getScale().y;
     }
     return s.str();

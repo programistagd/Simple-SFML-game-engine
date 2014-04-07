@@ -25,8 +25,8 @@ public:
         return nextLevel;
     }
 
-private:
-    std::string nextLevel;
+protected:
+    std::string nextLevel = "";
 };
 
 #endif	/* LEVELSWITCH_HPP */

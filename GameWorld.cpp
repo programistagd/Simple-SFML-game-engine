@@ -50,8 +50,9 @@ void GameWorld::update(float dt){
     for(std::list<GameObject*>::iterator i = entities.begin();i!=entities.end();i++){//remove "dead" enities
         if((*i)->shouldBeRemoved()){
             entitiesByType[(*i)->getType()].remove(*i);
-            delete *i;
+            GameObject* dd = *i;
             i=entities.erase(i);
+            delete dd;
         }
     }
     
@@ -102,6 +103,7 @@ void GameWorld::cleanUp(){
     }
     observers.clear();
     entities.clear();
+    entitiesByType.clear();
 }
 
 const std::list<GameObject*>& GameWorld::getEntitiesOfType(std::string typeName){

@@ -77,6 +77,7 @@ void Player::update(float dt){
     for(GameObject* obj : world->getEntitiesOfType("LevelSwitch")){
         LevelSwitch* o = reinterpret_cast<LevelSwitch*>(obj);
         if(getAABB().collides(o->aabb)){
+            if(o->getNextLevel()=="") continue;
             world->changeScene(o->getNextLevel());
             break;
         }
