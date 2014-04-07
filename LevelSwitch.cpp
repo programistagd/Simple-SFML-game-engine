@@ -28,11 +28,13 @@ GameObject* LevelSwitch::create(GameWorld& world, ResourceManager* rm, std::stri
         obj->aabb.start = sf::Vector2f(0,0);
         //obj->aabb.end = sf::Vector2f(0.1,0.1);
         in>>obj->aabb.end.x>>obj->aabb.end.y;
-        obj->image.setScale(obj->aabb.end.x/tex->getSize().x,obj->aabb.end.y/tex->getSize().y);
+        if(tex)
+                obj->image.setScale(obj->aabb.end.x/tex->getSize().x,obj->aabb.end.y/tex->getSize().y);
     }
     else{
         obj->aabb.start = sf::Vector2f(0,0);
-        obj->aabb.end = sf::Vector2f(tex->getSize().x,tex->getSize().y);
+        if(tex)
+                obj->aabb.end = sf::Vector2f(tex->getSize().x,tex->getSize().y);
     }
     obj->aabb=obj->aabb+sf::Vector2f(x,y);
     
