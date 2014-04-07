@@ -126,6 +126,10 @@
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
+          <standard>8</standard>
+          <incDir>
+            <pElem>../../c++/SFML-2.1/include</pElem>
+          </incDir>
         </ccTool>
         <fortranCompilerTool>
           <developmentMode>5</developmentMode>
@@ -133,6 +137,13 @@
         <asmTool>
           <developmentMode>5</developmentMode>
         </asmTool>
+        <linkerTool>
+          <linkerLibItems>
+            <linkerLibFileItem>../../c++/SFML-2.1/lib/libsfml-graphics.so</linkerLibFileItem>
+            <linkerLibFileItem>../../c++/SFML-2.1/lib/libsfml-system.so</linkerLibFileItem>
+            <linkerLibFileItem>../../c++/SFML-2.1/lib/libsfml-window.so</linkerLibFileItem>
+          </linkerLibItems>
+        </linkerTool>
       </compileType>
       <item path="Edible.cpp" ex="false" tool="1" flavor2="0">
       </item>
