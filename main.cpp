@@ -179,14 +179,17 @@ int main(int argc, char** argv) {
                     if(o->intersects(mouseCur)){
                         //mouseStart = mouseCur;
                         moving = o;
-                        std::cout<<"Caught!\n";
+                        //std::cout<<"Caught!\n";
                         break;
                     }
                 }
             }
             if((world.isPaused() || editing) && event.type == sf::Event::MouseMoved && moving!=nullptr){
                 sf::Vector2f mouseCur = window.getView().getCenter()-.5f*window.getView().getSize()+sf::Vector2f(event.mouseMove.x,event.mouseMove.y);
-                moving->move(mouseCur);
+                if(sf::Keyboard::isKeyPressed(sf::Keyboard::LControl))
+                    moving->move(sf::Vector2f(((int)mouseCur.x/32)*32,((int)mouseCur.y/32)*32));
+                else
+                    moving->move(mouseCur);
             }
             if((world.isPaused() || editing) && event.type == sf::Event::MouseButtonReleased && moving!=nullptr){
                 moving = nullptr;
