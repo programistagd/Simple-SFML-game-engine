@@ -33,6 +33,9 @@ GameObject* StaticObject::create(GameWorld& world, ResourceManager* rm, std::str
     in>>texture>>x>>y;
     StaticObject* obj = new StaticObject(rm->loadTexture(texture), x,y);
     obj->textureName = texture;
+    if(!in.eof()){
+        in>>obj->depth;
+    }
     /*if(!in.eof()){
         in>>obj->aabb.start.x>>obj->aabb.start.y>>obj->aabb.end.x>>obj->aabb.end.y;
     }*/
@@ -40,8 +43,10 @@ GameObject* StaticObject::create(GameWorld& world, ResourceManager* rm, std::str
 }
 
 std::string StaticObject::dumpToString(){
+    if(depth<-5) return "";
     std::stringstream s;
     s<<getType()<<" "<<textureName<<" "<<obj.getPosition().x<<" "<<obj.getPosition().y;
+    if(depth!=5) s<<depth;
     return s.str();
 }
 
@@ -57,4 +62,8 @@ bool StaticObject::intersects(sf::Vector2f point){
 
 void StaticObject::move(sf::Vector2f relative){
     obj.setPosition(relative);
+}
+
+int StaticObject::getZIndex() const{
+    return depth;
 }

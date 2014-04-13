@@ -17,7 +17,7 @@ extern sf::Font globalMainFont;
 TextSign::TextSign(std::string txt, float x, float y){
     text.setFont(globalMainFont);
     text.setCharacterSize(28);
-    text.setColor(sf::Color::White);//todo black??
+    text.setColor(sf::Color::Black);
     text.setString(txt);
     text.setPosition(x,y);
 }
@@ -38,7 +38,7 @@ GameObject* TextSign::create(GameWorld& world, ResourceManager* rm, std::strings
     std::string text;
     std::getline(in, text, in.widen('\"'));
     in>>x>>y;
-    TextSign* obj = new TextSign(text, x,y);
+    TextSign* obj = new TextSign(text.substr(1), x,y);
     return obj;
 }
 

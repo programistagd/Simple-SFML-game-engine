@@ -111,16 +111,17 @@ const std::list<GameObject*>& GameWorld::getEntitiesOfType(std::string typeName)
     return entitiesByType[typeName];
 }
 
-void GameWorld::moveView(sf::Vector2f newCenter){
+const sf::View& GameWorld::moveView(sf::Vector2f newCenter){
     viewCenter = newCenter;
+    return window.getView();
 }
 
-bool compareZObj(const GameObject* a, const GameObject* b){
+bool _world__compareZObj(const GameObject* a, const GameObject* b){
     return (a->getZIndex()<b->getZIndex());
 }
 
 void GameWorld::updateZOrder(){
-    entities.sort(compareZObj);
+    entities.sort(_world__compareZObj);
 }
 
 void GameWorld::changeScene(std::string newScene){

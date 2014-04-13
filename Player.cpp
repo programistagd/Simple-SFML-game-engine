@@ -11,21 +11,23 @@
 #include "LevelSwitch.hpp"
 
 Player::Player() : observer(*this){
+    background = new StaticObject();
 }
 
 Player::~Player() {
+    //delete background;//no need, World manages its lifetime
 }
 
 void Player::update(float dt){
     
     //MECHANICS
-    eating-=3.f*dt;
+    eating-=6.5f*dt;
     
     if(eating<0.f){
-        world->changeScene("ending1.lvl");
+        world->changeScene("end1.lvl");
     }
     if(health<0.f){
-        world->changeScene("ending1.lvl");//TODO end2
+        world->changeScene("end2.lvl");
     }
     
     
@@ -71,7 +73,13 @@ void Player::update(float dt){
         }
     }
     image.setPosition(image.getPosition()+dx);
-    world->moveView(image.getPosition()+0.5f*sf::Vector2f(image.getTexture()->getSize()));
+    const sf::View& v =world->moveView(image.getPosition()+0.5f*sf::Vector2f(image.getTexture()->getSize()));
+    background->move(v.getCenter()+sf::Vector2f(-400,-300));
+    
+    if(image.getPosition().y>1000.f){
+        image.setPosition(image.getPosition().x,-400);
+        velocity.y=0.f;
+    }
     
     //check for level switch collisions
     for(GameObject* obj : world->getEntitiesOfType("LevelSwitch")){
@@ -111,6 +119,11 @@ GameObject* Player::create(GameWorld& world, ResourceManager* rm, std::stringstr
     in>>x>>y;
     obj->image.setTexture(*rm->loadTexture("player.png"));
     obj->image.setPosition(x,y);
+    StaticObject* proxy = reinterpret_cast<StaticObject*>(background);
+    std::stringstream bgstr("bg.jpg 0 0 -10");
+    delete obj->background;
+    obj->background = proxy->create(world, rm, bgstr);
+    world.addObject(obj->background);
     
     obj->horizontal.start = sf::Vector2f(0,0+4);
     obj->horizontal.end = sf::Vector2f(obj->image.getTexture()->getSize().x,obj->image.getTexture()->getSize().y-8);

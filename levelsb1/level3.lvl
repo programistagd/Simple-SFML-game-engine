@@ -1,0 +1,32 @@
+
+Obstacle tile.png -738.277 68.3535 1
+Obstacle tile.png 2898.51 689.079 1
+Obstacle tile.png -189.426 -120.84 1
+Obstacle tile.png 212.793 -40.5193 1
+Obstacle tile.png -1196 328.858 1
+Obstacle tile.png 1469.36 42.4124 1
+Obstacle tile.png 986.648 217.146 1
+Obstacle tile.png 1934.29 407.031 1
+Obstacle tile.png 2420.55 853.921 1
+Obstacle tile.png 3213.99 957.46 1
+Obstacle tile.png 528.18 443.014 0 500 80
+Obstacle tile.png -19.7233 444.103 0 500 80
+Obstacle tile.png -665 576 0 500 80
+Obstacle tile.png -1271.41 651.063 0 500 80
+Obstacle tile.png 1118.32 683.88 0 500 80
+Edible cherry.png -528.241 -9.94925 20
+Edible cherry.png 1912.05 226.633 20
+Edible cherry.png 1138.77 469.116 20
+Edible cake.png 1626.04 2.86362 -30
+Edible ycandy.png -1070.24 581.266 -20
+Edible fish.png -964.759 257.57 20
+Edible fish.png 346.366 -97.9261 20
+Edible mushroom.png 2358.63 498.958 20
+Edible lolipop.png 111.373 359.268 -20
+Edible rcandy.png -178.043 -189.994 -20
+Edible salad.png -419.862 481.371 50
+Edible salad.png 889.272 -129.875 50
+LevelSwitch lock.png 3625.24 900.079 level4.lvl
+TextSign Anoreksja powoduje anemie" -763.344 387
+TextSign Objawia sie ona wypadaniem wlosow, bladoscia skory, zaburzeniami snu" -678.639 347.84
+Player -608.344 484

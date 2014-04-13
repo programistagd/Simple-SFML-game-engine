@@ -19,18 +19,15 @@ Edible cherry.png -834.385 -210.631 20
 Edible cherry.png 847.256 525.346 20
 Edible cake.png -777.458 808.84 -30
 Edible ycandy.png -2212.55 342.926 -20
-Edible cake.png 3.66919 703.002 -30
-Edible ycandy.png 225.669 672.641 -20
-Edible rcandy.png -110.503 671.929 -20
 Edible fish.png -1351.46 30.5613 20
 Edible fish.png 41.701 -427.971 20
-Edible mushroom.png -1187.19 781.113 -20
-Edible lolipop.png -0.330811 639.002 -20
+Edible mushroom.png -1187.19 781.113 20
+Edible lolipop.png 54.2155 639.989 -20
 Edible rcandy.png -2212.55 342.926 -20
 Edible salad.png -445.819 480.648 50
 Edible salad.png -923.385 -479.631 50
 LevelSwitch lock.png 1382.26 -346.794 level3.lvl
-TextSign Jedz madrze!" -658.169 411.839
-TextSign Jadlowstret psychiczny powoduje utrate masy miesniowej" -1376.2 650.111
-TextSign Pogarsza funkcjonowanie serca, mozgu, nerek" -1866.95 96.3674
+TextSign Jedz madrze!" -763.344 387
+TextSign Jadlowstret psychiczny powoduje utrate masy miesniowej" -678.639
+TextSign Pogarsza funkcjonowanie serca, mozgu, nerek" -678.639 347.84
 Player -608.344 484

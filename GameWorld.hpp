@@ -30,7 +30,7 @@ public:
     
     void notify(GameObject* object, std::string event);
     
-    void moveView(sf::Vector2f newCenter);
+    const sf::View& moveView(sf::Vector2f newCenter);
     
     void changeScene(std::string newScene);
     

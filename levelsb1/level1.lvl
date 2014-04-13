@@ -12,13 +12,13 @@ Obstacle tile.png 1715 576 0 500 80
 Edible cherry.png -298.509 331.126 20
 Edible cake.png 177.767 535.767 -20
 Edible fish.png 423.034 49.0634 20
-Edible mushroom.png 138.034 -155.937 -20
+Edible mushroom.png 138.034 -155.937 20
 Edible lolipop.png 768.762 246.767 -20
 Edible rcandy.png 46.4907 159.126 -20
 Edible salad.png -362.943 -402.593 50
 LevelSwitch lock.png 2111.98 476.918 level2.lvl
 TextSign Chodz strzalkami, jedz i przechodz levele!" -763.344 387
-TextSign Anoreksja powoduje wyniszczenie organizmu" -400.477 518.51
-TextSign Prowadzi do niskiego cisnienia krwi" -107.454 80.4017
-TextSign Powoduje nastroje depresyjne i izolowanie sie od octoczenia" 926.948 370.031
-Player -608.344 453.835
+TextSign Anoreksja powoduje wyniszczenie organizmu" -292.804 449.961
+TextSign Prowadzi do niskiego cisnienia krwi" -292.804 449.961
+TextSign Powoduje nastroje depresyjne i izolowanie sie od octoczenia" -292.804 449.961
+Player -608.344 453.78

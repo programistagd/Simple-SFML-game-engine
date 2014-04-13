@@ -25,12 +25,15 @@ public:
     virtual bool intersects(sf::Vector2f point);
     virtual void move(sf::Vector2f relative);
     
+    virtual int getZIndex() const;
+    
     virtual std::string dumpToString();
     
     virtual ~StaticObject();
 private:
     sf::Sprite obj;
     std::string textureName;
+    int depth = 5;
 };
 
 #endif	/* STATICOBJECT_HPP */

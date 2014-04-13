@@ -28,6 +28,8 @@
 
 const unsigned int WIDTH=800,HEIGHT=600;
 
+extern bool _world__compareZObj(const GameObject* a, const GameObject* b);
+
 sf::Font globalMainFont;
 
 void saveFile(std::string fname, std::string data){
@@ -46,10 +48,12 @@ int main(int argc, char** argv) {
     sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Game");
     window.setVerticalSyncEnabled(true);
     window.setView(sf::View(sf::Vector2f(-500,300), sf::Vector2f(WIDTH, HEIGHT)));
+   
     
     globalMainFont.loadFromFile("FreeSans.ttf");
     
     ResourceManager resourceManager;
+    resourceManager.setPath("assets/");
     GameWorld world(window, resourceManager);
     resourceManager.registerType(new StaticObject());
     resourceManager.registerType(new Obstacle());
@@ -107,6 +111,20 @@ int main(int argc, char** argv) {
                         world.notify(nullptr, std::string("PressDown"));
                         editorMovement.y = 10.f;
                         break;
+                    case sf::Keyboard::Equal:
+                    {
+                        sf::View vv = window.getView();
+                        vv.zoom(.5f);
+                        window.setView(vv);
+                    }
+                    break;
+                    case sf::Keyboard::Dash:
+                    {
+                        sf::View vv = window.getView();
+                        vv.zoom(2.f);
+                        window.setView(vv);
+                    }
+                    break;
                     case sf::Keyboard::P:
                         {
                             bool _pp = world.isPaused();
@@ -130,7 +148,11 @@ int main(int argc, char** argv) {
                         }
                         break;
                     case sf::Keyboard::S:
-                        saveFile("savedLevel.lvl", temporaryFile.str());
+                        {
+                            std::stringstream str;
+                            resourceManager.saveWorld(world, str);
+                            saveFile("savedLevel.lvl", str.str());
+                        }
                         break;
                     case sf::Keyboard::R:
                         world.changeScene("savedLevel.lvl");
@@ -175,7 +197,10 @@ int main(int argc, char** argv) {
             
             if((world.isPaused() || editing) && event.type == sf::Event::MouseButtonPressed){
                 sf::Vector2f mouseCur = window.getView().getCenter()+sf::Vector2f(event.mouseButton.x,event.mouseButton.y)-.5f*window.getView().getSize();
-                for(GameObject* o : world.getEntitiesOfType("")){
+                std::list<GameObject*> lista =world.getEntitiesOfType("");
+                lista.sort(_world__compareZObj);
+                lista.reverse();
+                for(GameObject* o : lista ){
                     if(o->intersects(mouseCur)){
                         //mouseStart = mouseCur;
                         moving = o;
@@ -187,7 +212,7 @@ int main(int argc, char** argv) {
             if((world.isPaused() || editing) && event.type == sf::Event::MouseMoved && moving!=nullptr){
                 sf::Vector2f mouseCur = window.getView().getCenter()-.5f*window.getView().getSize()+sf::Vector2f(event.mouseMove.x,event.mouseMove.y);
                 if(sf::Keyboard::isKeyPressed(sf::Keyboard::LControl))
-                    moving->move(sf::Vector2f(((int)mouseCur.x/32)*32,((int)mouseCur.y/32)*32));
+                    moving->move(sf::Vector2f(((int)mouseCur.x/35)*35,((int)mouseCur.y/32)*32));
                 else
                     moving->move(mouseCur);
             }
@@ -198,7 +223,7 @@ int main(int argc, char** argv) {
         }
         
         if(world.isPaused()){
-            if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
+            if(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)||sf::Keyboard::isKeyPressed(sf::Keyboard::RShift))
                 world.moveView(window.getView().getCenter()+editorMovement*dt*600.f);
             else
                 world.moveView(window.getView().getCenter()+editorMovement*dt*170.f);

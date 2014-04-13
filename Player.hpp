@@ -12,6 +12,7 @@
 #include <SFML/Graphics.hpp>
 #include "GameWorld.hpp"
 #include "Observer.hpp"
+#include "StaticObject.hpp"
 
 class Player : public GameObject{
 public:
@@ -36,7 +37,7 @@ public:
 private:
     //sf::Vector2f position;
     sf::Vector2f velocity, acceleration=sf::Vector2f(0,400);
-    float speed = 100.f;
+    float speed = 300.f;
     sf::Sprite image;
     bool collides(AABB aabb);
     AABB horizontal, feet, vertical;
@@ -55,6 +56,7 @@ private:
     
     float health = 100.f, eating = 100.f;
     bool doubleJump=true;
+    GameObject* background;
 
 };
 

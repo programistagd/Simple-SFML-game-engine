@@ -23,7 +23,7 @@ sf::Texture*  ResourceManager::loadTexture(std::string file){
     if(textures.find(file)!=textures.end()) return &textures[file];
     
     sf::Texture& tx = textures[file];
-    tx.loadFromFile(file);
+    tx.loadFromFile(path+file);
     tx.setSmooth(true);
     return &tx;
 }
@@ -57,4 +57,8 @@ void ResourceManager::saveWorld(GameWorld& world, std::ostream& stream){
 
 void ResourceManager::registerType(GameObject* templ){
     templates[templ->getType()] = templ;
+}
+
+void ResourceManager::setPath(std::string path){
+    this->path = path;
 }

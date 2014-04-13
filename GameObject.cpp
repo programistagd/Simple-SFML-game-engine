@@ -34,5 +34,5 @@ bool AABB::collides(AABB other){
 }
 
 int GameObject::getZIndex() const{
-    return 0;//default val
+    return 3;//default val
 }
